@@ -1,4 +1,4 @@
-✅ main.py 코드 예시
+ main.py 코드 예시
 import os
 import json
 from datetime import datetime
@@ -14,10 +14,10 @@ def read_log_file(filepath):
             lines = f.readlines()
             return [line.strip() for line in lines if line.strip()]
     except FileNotFoundError:
-        print(f"❌ 파일 '{filepath}'을(를) 찾을 수 없습니다.")
+        print(f" 파일 '{filepath}'을(를) 찾을 수 없습니다.")
         return []
     except UnicodeDecodeError:
-        print(f"❌ 파일 '{filepath}' 디코딩 실패. UTF-8 인코딩을 확인하세요.")
+        print(f" 파일 '{filepath}' 디코딩 실패. UTF-8 인코딩을 확인하세요.")
         return []
 
 def parse_logs(log_lines):
@@ -27,14 +27,14 @@ def parse_logs(log_lines):
             timestamp, message = line.split(',', 1)
             parsed.append([timestamp.strip(), message.strip()])
         except ValueError:
-            print(f"⚠️ 로그 형식 오류: {line}")
+            print(f" 로그 형식 오류: {line}")
     return parsed
 
 def sort_logs(log_list):
     try:
         return sorted(log_list, key=lambda x: datetime.fromisoformat(x[0]), reverse=True)
     except Exception as e:
-        print("❌ 시간 파싱 및 정렬 중 오류:", e)
+        print(" 시간 파싱 및 정렬 중 오류:", e)
         return log_list
 
 def convert_to_dict(sorted_logs):
@@ -44,40 +44,40 @@ def save_json(data, filepath):
     try:
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
-        print(f"✅ JSON 파일로 저장됨: {filepath}")
+        print(f" JSON 파일로 저장됨: {filepath}")
     except Exception as e:
-        print("❌ JSON 저장 중 오류:", e)
+        print(" JSON 저장 중 오류:", e)
 
 def save_danger_logs(log_list):
     danger_logs = [f"{ts}, {msg}" for ts, msg in log_list if any(k in msg for k in DANGER_KEYWORDS)]
     if danger_logs:
         with open(DANGER_FILE, 'w', encoding='utf-8') as f:
             f.write('\n'.join(danger_logs))
-        print(f"⚠️ 위험 로그 저장됨: {DANGER_FILE}")
+        print(f" 위험 로그 저장됨: {DANGER_FILE}")
 
 def search_logs(json_file):
     if not os.path.exists(json_file):
-        print("❌ 검색 대상 JSON 파일이 없습니다.")
+        print(" 검색 대상 JSON 파일이 없습니다.")
         return
-    keyword = input("🔍 검색할 문자열을 입력하세요: ")
+    keyword = input(" 검색할 문자열을 입력하세요: ")
     with open(json_file, 'r', encoding='utf-8') as f:
         logs = json.load(f)
     results = [entry for entry in logs.values() if keyword in entry['message']]
-    print(f"🔎 '{keyword}' 포함 로그:")
+    print(f" '{keyword}' 포함 로그:")
     for r in results:
         print(f"{r['timestamp']} - {r['message']}")
 
 def main():
-    print("📁 로그 파일 읽기...")
+    print(" 로그 파일 읽기...")
     raw_logs = read_log_file(LOG_FILE)
     if not raw_logs:
         return
 
-    print("\n📋 로그 파싱 중...")
+    print("\n 로그 파싱 중...")
     log_list = parse_logs(raw_logs)
     print(log_list)  # 리스트 객체 출력
 
-    print("\n📌 시간 역순 정렬...")
+    print("\n 시간 역순 정렬...")
     sorted_logs = sort_logs(log_list)
     for log in sorted_logs:
         print(log)
@@ -85,37 +85,37 @@ def main():
     print("\n🗂 리스트 → 딕셔너리 변환...")
     log_dict = convert_to_dict(sorted_logs)
 
-    print("\n💾 JSON 파일 저장...")
+    print("\n JSON 파일 저장...")
     save_json(log_dict, JSON_FILE)
 
-    print("\n🚨 위험 로그 필터링...")
+    print("\n 위험 로그 필터링...")
     save_danger_logs(sorted_logs)
 
-    print("\n🔍 검색 기능 실행...")
+    print("\n 검색 기능 실행...")
     search_logs(JSON_FILE)
 
 if __name__ == "__main__":
     main()
 
-✅ 2. log_analysis.md (사고 분석 보고서 예시)
-# 🚀 사고 분석 보고서
+ 2. log_analysis.md (사고 분석 보고서 예시)
+#  사고 분석 보고서
 
-## 📅 분석 일시
+##  분석 일시
 2025-08-18
 
-## 📁 분석 대상
+##  분석 대상
 - 로그 파일: `mission_computer_main.log`
 - 총 로그 수: N개
 
-## 🧪 분석 결과
+##  분석 결과
 
-### ✅ 정상 로그 예시
+###  정상 로그 예시
 
 
 2025-08-18T12:30:00, 시스템 점검 완료
 
 
-### ⚠️ 이상 로그 예시
+###  이상 로그 예시
 
 
 2025-08-18T12:35:02, 센서 온도 고온 경고 발생
@@ -123,7 +123,7 @@ if __name__ == "__main__":
 2025-08-18T12:35:15, 엔진실 폭발 감지
 
 
-## 💥 사고 추론
+##  사고 추론
 
 - **고온 경고** → **산소 누출** → **폭발 감지** 순으로 발생
 - 시스템의 과열로 인해 내부 압력이 상승하고, 산소가 누출되면서 가연성 환경이 형성됨
@@ -138,39 +138,39 @@ if __name__ == "__main__":
 
 보고자: 시스템 분석팀
 
-✅ 테스트용 로그 예시 (mission_computer_main.log)
+ 테스트용 로그 예시 (mission_computer_main.log)
 2025-08-18T12:30:00, 시스템 점검 완료
 2025-08-18T12:35:02, 센서 온도 고온 경고 발생
 2025-08-18T12:35:10, 산소(Oxygen) 누출 감지
 2025-08-18T12:35:15, 엔진실 폭발 감지
 2025-08-18T12:40:00, 복구 작업 진행 중
 
-✅ 실행 결과 예시 (요약)
-📁 로그 파일 읽기...
-📋 로그 파싱 중...
+ 실행 결과 예시 (요약)
+ 로그 파일 읽기...
+ 로그 파싱 중...
 [['2025-08-18T12:30:00', '시스템 점검 완료'], ...]
 
-📌 시간 역순 정렬...
+ 시간 역순 정렬...
 ['2025-08-18T12:40:00', '복구 작업 진행 중']
 ...
 
-💾 JSON 파일 저장됨: mission_computer_main.json
-⚠️ 위험 로그 저장됨: danger_logs.txt
-🔍 검색할 문자열을 입력하세요: Oxygen
-🔎 'Oxygen' 포함 로그:
+ JSON 파일 저장됨: mission_computer_main.json
+ 위험 로그 저장됨: danger_logs.txt
+ 검색할 문자열을 입력하세요: Oxygen
+ 'Oxygen' 포함 로그:
 2025-08-18T12:35:10 - 산소(Oxygen) 누출 감지
 
 -----------------------------------------------------------------
 1. 로그 파일 내용을 콤마(,)를 기준으로 날짜/시간과 메시지를 분리하여 Python의 리스트(List) 객체로 전환
 
-✅ 1. 로그 파일 내용 형식 예시
+ 1. 로그 파일 내용 형식 예시
 2025-08-18T12:35:10, 산소(Oxygen) 누출 감지
 2025-08-18T12:35:15, 엔진실 폭발 감지
 
 
 각 줄은 날짜/시간, 메시지 두 부분으로 구성되어 있고, 콤마(,)로 구분되어 있습니다.
 
-✅ 2. 원하는 전환 결과 (리스트)
+ 2. 원하는 전환 결과 (리스트)
 
 위 로그들을 파이썬 리스트 객체로 바꾸면 이렇게 됩니다:
 
@@ -186,30 +186,30 @@ if __name__ == "__main__":
 -----------------------------------------------------------------
 2. 리스트 객체를 화면에 출력
 
-✅ 예제와 함께 설명
+ 예제와 함께 설명
 🔸 예를 들어, 다음과 같은 리스트가 있다고 해봅시다:
 logs = [
     ['2025-08-18T12:35:10', '산소(Oxygen) 누출 감지'],
     ['2025-08-18T12:35:15', '엔진실 폭발 감지']
 ]
 
-✅ 리스트 전체 출력하기
+ 리스트 전체 출력하기
 print(logs)
 
 
-📤 출력 결과:
+ 출력 결과:
 
 [['2025-08-18T12:35:10', '산소(Oxygen) 누출 감지'], ['2025-08-18T12:35:15', '엔진실 폭발 감지']]
 
 
 이 방식은 리스트 구조 전체를 보여줍니다.
 
-✅ 보기 좋게 줄 단위로 출력하기
+ 보기 좋게 줄 단위로 출력하기
 for log in logs:
     print(log)
 
 
-📤 출력 결과:
+ 출력 결과:
 
 ['2025-08-18T12:35:10', '산소(Oxygen) 누출 감지']
 ['2025-08-18T12:35:15', '엔진실 폭발 감지']
@@ -217,7 +217,7 @@ for log in logs:
 
 각 로그 항목을 한 줄씩 출력하므로 가독성이 좋아집니다.
 
-✅ 더 보기 좋게 포맷해서 출력하기
+ 더 보기 좋게 포맷해서 출력하기
 for log in logs:
     timestamp, message = log
     print(f"[{timestamp}] {message}")
@@ -226,7 +226,7 @@ for log in logs:
 -------------------------------------------------
 3. 리스트 객체를 시간 역순으로 정렬하여 출력
 
-📤 출력:
+ 출력:
 
 [2025-08-18T12:35:10] 산소(Oxygen) 누출 감지
 [2025-08-18T12:35:15] 엔진실 폭발 감지
@@ -361,7 +361,7 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 
 1. 로그 파일을 분석하여 사고 원인을 추론
 
-✅ 1. 로그 분석의 목적
+ 1. 로그 분석의 목적
 
 로그에 기록된 이벤트를 시간순으로 파악하고,
 
@@ -369,7 +369,7 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 
 최종적으로 시스템 이상, 폭발, 고장 등 **사고의 근본 원인(Root Cause)**를 추론합니다.
 
-✅ 2. 예시 로그 데이터
+ 2. 예시 로그 데이터
 2025-08-18 14:33:12,Engine temperature high
 2025-08-18 14:34:00,Pressure normal
 2025-08-18 14:35:22,Oxygen level critical
@@ -377,7 +377,7 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 2025-08-18 14:37:50,Structural integrity compromised
 2025-08-18 14:38:20,Explosion detected
 
-✅ 3. 시간순 정렬 후 흐름 해석
+ 3. 시간순 정렬 후 흐름 해석
 시간	메시지
 14:33:12	Engine temperature high
 14:34:00	Pressure normal
@@ -385,8 +385,8 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 14:36:45	Engine overheating ❗️
 14:37:50	Structural integrity compromised ❗️
 14:38:20	Explosion detected 💥
-✅ 4. 추론 예시: 사고 분석
-🚨 단계별 문제 발생
+ 4. 추론 예시: 사고 분석
+ 단계별 문제 발생
 
 14:33:12: 엔진 온도 상승 → 초기 경고
 
@@ -398,22 +398,22 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 
 14:38:20: 최종적으로 폭발 발생
 
-🧠 추론된 사고 원인
+ 추론된 사고 원인
 
 "엔진의 과열로 인해 시스템 내 산소 또는 압력이 불안정해졌고, 이는 구조 손상과 폭발로 이어졌다."
 
 즉, **초기 경고(온도, 산소)**를 적절히 처리하지 못한 것이 사고의 근본 원인으로 보입니다.
 
-✅ 5. log_analysis.md에 들어갈 내용 예시
+ 5. log_analysis.md에 들어갈 내용 예시
 # 사고 분석 보고서
 
-## 📅 로그 분석 날짜
+##  로그 분석 날짜
 2025-08-18
 
-## 🧾 요약
+##  요약
 2025년 8월 18일, 미션 컴퓨터 시스템에서 발생한 일련의 로그를 분석한 결과, **엔진 과열과 산소 수준의 불안정이 복합적으로 작용하여 구조 손상 및 폭발로 이어진 사고**로 판단됨.
 
-## 🕒 로그 이벤트 흐름
+##  로그 이벤트 흐름
 
 1. **14:33:12** - Engine temperature high
 2. **14:35:22** - Oxygen level critical
@@ -421,17 +421,17 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 4. **14:37:50** - Structural integrity compromised
 5. **14:38:20** - Explosion detected
 
-## 🔍 사고 원인 추론
+##  사고 원인 추론
 
 - 초기 경고(온도, 산소)를 무시하거나 대응 실패
 - 엔진 과열이 지속되며 구조 내부에 스트레스 증가
 - 산소 또는 연료 누출로 인해 내부 폭발 발생 가능성
 
-## 📌 결론
+##  결론
 
 > 시스템 초기 경고에 대한 실시간 대응 부족이 사고의 근본 원인으로 분석됨. 향후 온도 및 산소 센서 이상에 대한 실시간 대응 체계 개선이 필요함.
 
-✅ 요약
+ 요약
 
 로그를 시간 순으로 정렬 → 의미 있는 흐름 파악
 
@@ -564,7 +564,7 @@ my_var = [1, 2, 3]
 print(type(my_var))
 
 
-📤 출력 결과:
+ 출력 결과:
 
 <class 'list'>
 
