@@ -725,7 +725,46 @@ person["job"] = "개발자"
 for k, v in person.items():
     print(f"{k}: {v}")
 
+1. main.py - 로그 분석 프로그램
 
+환경 테스트: hello_mars() 함수로 "Hello Mars" 출력
+파일 읽기: 예외 처리를 포함한 로그 파일 읽기 및 전체 내용 출력
+리스트 변환: CSV 형태의 로그를 콤마 기준으로 파싱하여 리스트 객체로 변환
+시간 역순 정렬: datetime을 사용한 시간 기준 역순 정렬
+사전 변환: 정렬된 리스트를 인덱스를 키로 하는 사전 객체로 변환
+JSON 저장: UTF-8 인코딩으로 mission_computer_main.json 파일 저장
+보너스 기능:
+
+위험 키워드 필터링 및 별도 파일 저장
+JSON 파일 기반 로그 검색 기능
+
+
+
+2. log_analysis.md - 사고 분석 보고서
+
+로그를 상세 분석하여 사고 원인 추론
+Markdown 형식으로 체계적인 보고서 작성
+시간 순서별 분석, 기술적 분석, 개선 권고사항 포함
+
+3. mission_computer_main.log - 테스트용 로그 파일
+
+제공된 로그 데이터를 그대로 구현
+
+주요 특징
+
+PEP 8 준수: 문자열은 '' 사용, 적절한 공백, 들여쓰기 등
+완전한 예외 처리: 모든 파일 입출력에 try-catch 구문 적용
+Python 내장 라이브러리만 사용: json, datetime, os 등만 사용
+정확한 JSON 형식: key-value 구조로 올바른 JSON 생성
+
+실행 방법
+
+세 파일을 모두 같은 디렉토리에 저장
+python main.py 실행
+프로그램이 자동으로 로그 분석 및 JSON 파일 생성
+대화형 검색 기능 사용 가능
+
+이제 python -V로 Python 설치를 확인하고 프로그램을 실행
 
 
    
