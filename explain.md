@@ -125,9 +125,9 @@ if __name__ == "__main__":
 
 ##  사고 추론
 
-- **고온 경고** → **산소 누출** → **폭발 감지** 순으로 발생
+- 고온 경고 → 산소 누출 → 폭발 감지 순으로 발생
 - 시스템의 과열로 인해 내부 압력이 상승하고, 산소가 누출되면서 가연성 환경이 형성됨
-- 이후 작은 스파크 또는 전기적 문제로 **폭발** 발생 가능성 매우 높음
+- 이후 작은 스파크 또는 전기적 문제로 폭발 발생 가능성 매우 높음
 
 ## 🛠 향후 조치
 - 온도 센서 정밀도 향상
@@ -187,7 +187,7 @@ if __name__ == "__main__":
 2. 리스트 객체를 화면에 출력
 
  예제와 함께 설명
-🔸 예를 들어, 다음과 같은 리스트가 있다고 해봅시다:
+ 예를 들어, 다음과 같은 리스트가 있다고 해봅시다:
 logs = [
     ['2025-08-18T12:35:10', '산소(Oxygen) 누출 감지'],
     ['2025-08-18T12:35:15', '엔진실 폭발 감지']
@@ -302,7 +302,7 @@ for i, log in enumerate(sorted_logs):
 print(log_dict)
 
 
-📤 출력 결과:
+ 출력 결과:
 
 {
   0: {'timestamp': '2025-08-18T12:35:15', 'message': '엔진실 폭발 감지'},
@@ -381,10 +381,10 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 시간	메시지
 14:33:12	Engine temperature high
 14:34:00	Pressure normal
-14:35:22	Oxygen level critical ❗️
-14:36:45	Engine overheating ❗️
-14:37:50	Structural integrity compromised ❗️
-14:38:20	Explosion detected 💥
+14:35:22	Oxygen level critical 
+14:36:45	Engine overheating 
+14:37:50	Structural integrity compromised
+14:38:20	Explosion detected 
  4. 추론 예시: 사고 분석
  단계별 문제 발생
 
@@ -411,15 +411,15 @@ mission_computer_main.json 파일이 UTF-8로 생성되고,
 2025-08-18
 
 ##  요약
-2025년 8월 18일, 미션 컴퓨터 시스템에서 발생한 일련의 로그를 분석한 결과, **엔진 과열과 산소 수준의 불안정이 복합적으로 작용하여 구조 손상 및 폭발로 이어진 사고**로 판단됨.
+2025년 8월 18일, 미션 컴퓨터 시스템에서 발생한 일련의 로그를 분석한 결과, 엔진 과열과 산소 수준의 불안정이 복합적으로 작용하여 구조 손상 및 폭발로 이어진 사고로 판단됨.
 
 ##  로그 이벤트 흐름
 
-1. **14:33:12** - Engine temperature high
-2. **14:35:22** - Oxygen level critical
-3. **14:36:45** - Engine overheating
-4. **14:37:50** - Structural integrity compromised
-5. **14:38:20** - Explosion detected
+1. 14:33:12 - Engine temperature high
+2. 14:35:22 - Oxygen level critical
+3. 14:36:45 - Engine overheating
+4. 14:37:50 - Structural integrity compromised
+5. 14:38:20 - Explosion detected
 
 ##  사고 원인 추론
 

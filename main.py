@@ -29,6 +29,11 @@ def read_log_file(filename):
     except Exception as e:
         print(f'오류: 파일 읽기 중 예상치 못한 오류가 발생했습니다. {e}')
         return None
+    
+# print('=' * 50) '=' 문자 하나를 50번 반복해서 출력하라는 뜻입니다.
+# open 객체 함수는 주로 파일을 열기 위해 사용되는 파이썬 내장 함수입니다.
+# FileNotFoundError는 파이썬에서 파일 또는 디렉토리를 찾을 수 없을 때 발생하는 에러(예외 클래스)입니다.
+# UnicodeDecodeError는 파이썬에서 텍스트(문자열)를 디코딩할 때 문제가 생기면 발생하는 에러입니다.
 
 
 def parse_log_to_list(content):
@@ -101,6 +106,9 @@ def sort_logs_reverse_chronological(log_list):
         return log_list
 
 
+# convert_list_to_dict 사용자 정의 함수이며,
+# 리스트를 딕셔너리(dict)로 변환하는 기능을 합니다.
+
 def convert_list_to_dict(log_list):
     """
     리스트를 사전(Dict) 객체로 변환하는 함수
@@ -123,6 +131,12 @@ def convert_list_to_dict(log_list):
     
     return log_dict
 
+# enumerate()는 리스트, 튜플, 문자열 같은 반복 가능한 객체를 입력받아,
+# 각 요소에 대해 **인덱스와 값 쌍(tuple)**을 포함하는 열거형 객체를 반환합니다.
+
+
+# save_dict_to_json() 함수는 사용자 정의 함수로,
+# 파이썬의 dict 자료형을 JSON 파일로 저장하는 기능을 합니다.
 
 def save_dict_to_json(log_dict, filename):
     """
@@ -145,6 +159,9 @@ def save_dict_to_json(log_dict, filename):
         return False
 
 
+# filter_danger_keywords() 함수는 "위험한 메시지"만 걸러내는 필터링 함수로,
+# 로그 데이터 중 위험 키워드를 포함한 항목만 골라내는 역할을 합니다.
+
 def filter_danger_keywords(log_list):
     """
     위험 키워드가 포함된 로그만 필터링하는 함수 (보너스 기능)
@@ -164,6 +181,7 @@ def filter_danger_keywords(log_list):
             filtered_logs.append(entry)
     
     return filtered_logs
+
 
 
 def save_danger_logs(danger_logs, filename):
