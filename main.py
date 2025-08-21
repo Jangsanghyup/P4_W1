@@ -460,7 +460,7 @@ def search_logs_by_keyword(json_filename):
 
 # lower()는 파이썬 문자열(string) 메서드로, 문자열 안에 있는 모든 대문자를 소문자로 변환하는 기능을 합니다.
 # strip()은 파이썬 문자열(string) 메서드로, 문자열의 앞뒤에 있는 공백 문자(또는 지정한 문자들)를 제거하는 데 사용됩니다.
-
+# upper() → 대문자로 변환
 
 def main():
 
