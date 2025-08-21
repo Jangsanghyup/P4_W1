@@ -73,6 +73,63 @@ def parse_log_to_list(content):
     
     return log_list
 
+# for line in lines[1:]:
+# 의미: lines라는 리스트에서 첫 번째 줄(0번째 인덱스)을 제외한 두 번째 줄부터 끝까지 순회합니다.
+# 용도: 보통 첫 줄은 헤더 이기 때문에 생략하고, 실제 데이터 줄만 처리합니다.
+
+# if line.strip():
+# 의미: 현재 줄에서 공백을 제거한 후 내용이 있는지 확인합니다.
+# line.strip()은 앞뒤 공백, 개행문자(\n) 등을 제거합니다.
+# 비어 있는 줄은 건너뛰기 위한 조건입니다.
+
+# parts = line.split(',', 2)
+# 의미: 현재 줄을 콤마(,) 기준으로 최대 3개 항목으로 나눕니다.
+# split(',', 2) → 첫 두 개의 ,까지만 나누고, 나머지는 마지막 요소로 남김.
+
+# if len(parts) >= 3:
+# 의미: 나눈 결과가 3개 이상인지 확인합니다.
+# 데이터가 잘못되어 항목이 부족하면 처리하지 않도록 방어 코드입니다.
+
+# timestamp = parts[0].strip()
+# 의미: 첫 번째 항목을 timestamp (시간 정보)로 저장.
+# .strip()으로 앞뒤 공백 제거.
+
+# event = parts[1].strip()
+# 의미: 두 번째 항목을 event (이벤트 이름 등)로 저장.
+
+# message = parts[2].strip()
+# 의미: 세 번째 항목을 message (상세 메시지)로 저장.
+
+# log_entry = {
+#                 'timestamp': timestamp,
+#                 'event': event,
+#                 'message': message
+#             }
+# 의미: 위에서 추출한 3개의 값을 하나의 딕셔너리 형태의 로그 항목으로 만듭니다.
+# 딕셔너리 구조로 저장하면 나중에 JSON 등으로 저장하거나 출력하기 편리합니다.
+
+#  log_list.append(log_entry)
+# 의미: 위에서 만든 log_entry 딕셔너리를 log_list라는 리스트에 추가합니다.
+# 결과적으로 log_list에는 여러 개의 로그 딕셔너리가 쌓입니다.
+
+# return log_list
+# 의미: 전체 로그 처리 결과인 리스트 (log_list)를 함수 밖으로 반환합니다.
+# 이 리스트는 각 줄에서 추출한 로그 정보를 담고 있습니다.
+
+# 예시 입력 (lines)
+# lines = [
+#     "timestamp,event,message",  
+#     "2025-08-21 09:00:00,LOGIN,User admin logged in",
+#     "2025-08-21 09:05:00,LOGOUT,User admin logged out"
+# ]
+
+# 처리 결과 (log_list)
+# [
+#     {'timestamp': '2025-08-21 09:00:00', 'event': 'LOGIN', 'message': 'User admin logged in'},
+#     {'timestamp': '2025-08-21 09:05:00', 'event': 'LOGOUT', 'message': 'User admin logged out'}
+# ]
+
+
 
 def display_list(log_list, title):
     
@@ -124,7 +181,7 @@ def convert_list_to_dict(log_list):
     log_dict = {}
     
     for i, entry in enumerate(log_list):
-        key = f'log_{i+1:03d}'  # log_001, log_002, ... 형식
+        key = f'log_{i+1:03d}'  
         log_dict[key] = {
             'timestamp': entry['timestamp'],
             'event': entry['event'],
