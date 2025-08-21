@@ -369,12 +369,12 @@ def search_logs_by_keyword(json_filename):
 #     try:
 
 
-# JSON 파일 열기 및 로딩
+# JSON 파일 오픈 및 로딩
 #         with open(json_filename, 'r', encoding='utf-8') as file:
 #             log_dict = json.load(file)
-# json_filename 파일을 UTF-8 인코딩으로 **읽기 모드(r)**로 엽니다.
-# json.load(file)로 파일 내용을 딕셔너리 형식으로 파싱하여 log_dict에 저장.
-# 이 파일은 convert_list_to_dict() 함수로 생성된 구조라고 가정합니다.
+# json_filename 파일을 UTF-8 인코딩으로 읽기 모드(r) 오픈
+# json.load(file)로 파일 내용을 딕셔너리 형식으로 파싱하여 log_dict에 저장
+# 이 파일은 convert_list_to_dict() 함수로 생성된 구조 가정
 
 
 # keyword = input('\n검색할 키워드를 입력하세요: ').strip()
@@ -383,58 +383,56 @@ def search_logs_by_keyword(json_filename):
 #   if not keyword:
 #             print('키워드가 입력되지 않았습니다.')
 #             return
-# 입력이 공백이거나 아무것도 없을 경우 경고를 출력하고 함수 종료.
+# 입력이 공백이거나 아무것도 없을 경우 경고를 출력하고 함수 종료
 
 
 #  print(f'\n=== "{keyword}" 키워드 검색 결과 ===')
 #         found_count = 0
-# 검색 결과 시작을 알리는 메시지 출력.
-# 검색된 로그 수를 셀 변수 found_count 초기화.
+# 검색 결과 시작을 알리는 메시지 출력
+# 검색된 로그 수를 셀 변수 found_count 초기화
 
 
 #  for log_id, log_entry in log_dict.items():
-# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복.
+# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복
 
 
-# 검색 결과 시작을 알리는 메시지 출력.
-
-# 검색된 로그 수를 셀 변수 found_count 초기화.
+# 검색 결과 시작을 알리는 메시지 출력
+# 검색된 로그 수를 셀 변수 found_count 초기화
 
 # 로그 항목 하나씩 순회하며 검색
 #         for log_id, log_entry in log_dict.items():
 
-# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복.
-
+# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복
 #             if keyword.lower() in log_entry['message'].lower():
 
 
-# 로그 메시지에 키워드가 포함되어 있는지 대소문자 무시하고 검사.
-# lower()는 대소문자 구분 없이 검색할 수 있게 해줌.
+# 로그 메시지에 키워드가 포함되어 있는지 대소문자 무시하고 검사
+# lower()는 대소문자 구분 없이 검색할 수 있게 해줌
 
 #                 print(f'{log_id}: {log_entry["timestamp"]} | {log_entry["event"]} | {log_entry["message"]}')
 #                 found_count += 1
 
 
-# 키워드를 포함한 로그를 출력 (로그 ID, 시간, 이벤트, 메시지).
-# 일치하는 항목 수 증가.
+# 키워드를 포함한 로그를 출력 (로그 ID, 시간, 이벤트, 메시지)
+# 일치하는 항목 수 증가
 # 검색 결과 없을 때 / 있을 때 처리
 #         if found_count == 0:
 #             print('해당 키워드를 포함한 로그가 없습니다.')
 
 
-# 검색된 로그가 하나도 없으면 안내 메시지 출력.
+# 검색된 로그가 하나도 없으면 안내 메시지 출력
 
 #         else:
 #             print(f'총 {found_count}개의 로그를 찾았습니다.')
 
 
-# 일치하는 로그 수를 출력.
+# 일치하는 로그 수를 출력
 # 파일 없음 예외 처리
 #     except FileNotFoundError:
 #         print(f'오류: {json_filename} 파일을 찾을 수 없습니다.')
 
 
-# 입력된 파일이 존재하지 않으면 에러 메시지 출력.
+# 입력된 파일이 존재하지 않으면 에러 메시지 출력
 # JSON 형식 오류 처리
 #     except json.JSONDecodeError:
 #         print(f'오류: {json_filename} 파일이 올바른 JSON 형식이 아닙니다.')
@@ -445,7 +443,7 @@ def search_logs_by_keyword(json_filename):
 #     except Exception as e:
 #         print(f'검색 중 오류가 발생했습니다: {e}')
 
-# 예기치 않은 다른 모든 오류를 잡아서 메시지로 출력.
+# 예기치 않은 다른 모든 오류를 잡아서 메시지로 출력
 
 # lower()는 파이썬 문자열(string) 메서드로, 문자열 안에 있는 모든 대문자를 소문자로 변환하는 기능을 합니다.
 # strip()은 파이썬 문자열(string) 메서드로, 문자열의 앞뒤에 있는 공백 문자(또는 지정한 문자들)를 제거하는 데 사용됩니다.
