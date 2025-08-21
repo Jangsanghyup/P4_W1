@@ -2,6 +2,8 @@ import json
 import os
 from datetime import datetime
 
+# datetime Python 표준 라이브러리(Standard Library)에 포함된 모듈(module)입니다.
+# datetime 안에는 datetime, date, time, timedelta 클래스가 포함되었습니다.
 
 def read_log_file(filename):
     """
