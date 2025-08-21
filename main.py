@@ -30,7 +30,9 @@ def read_log_file(filename):
     except Exception as e:
         print(f'오류: 파일 읽기 중 예상치 못한 오류가 발생했습니다. {e}')
         return None
-
+    
+    
+# 'e'   발생한 예외(Exception) 객체를 담는 변수
 # 'r'	읽기 전용 (파일이 존재해야 함)
 # 'w'	쓰기 전용 (파일이 없으면 생성, 있으면 덮어씀)
 # 'a'	추가 모드 (파일 끝에 내용을 추가)
