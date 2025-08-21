@@ -6,15 +6,15 @@ from datetime import datetime
 # datetime 안에는 datetime, date, time, timedelta 클래스가 포함되었습니다.
 
 def read_log_file(filename):
-    """
-    로그 파일을 읽어서 전체 내용을 반환하는 함수
     
-    Args:
-        filename (str): 읽을 로그 파일명
+    # 로그 파일을 읽어서 전체 내용을 반환하는 함수
+    
+    # Args:
+    #     filename (str): 읽을 로그 파일명
         
-    Returns:
-        str: 파일 내용 또는 None (오류 시)
-    """
+    # Returns:
+    #     str: 파일 내용 또는 None (오류 시)
+    
     try:
         with open(filename, 'r', encoding='utf-8') as file:
             content = file.read()
@@ -39,15 +39,15 @@ def read_log_file(filename):
 
 
 def parse_log_to_list(content):
-    """
-    로그 내용을 파싱하여 리스트로 변환하는 함수
     
-    Args:
-        content (str): 로그 파일 내용
+    # 로그 내용을 파싱하여 리스트로 변환하는 함수
+    
+    # Args:
+    #     content (str): 로그 파일 내용
         
-    Returns:
-        list: 파싱된 로그 데이터 리스트
-    """
+    # Returns:
+    #     list: 파싱된 로그 데이터 리스트
+   
     log_list = []
     
     if not content:
@@ -75,13 +75,13 @@ def parse_log_to_list(content):
 
 
 def display_list(log_list, title):
-    """
-    리스트 내용을 화면에 출력하는 함수
     
-    Args:
-        log_list (list): 출력할 로그 리스트
-        title (str): 출력 제목
-    """
+    # 리스트 내용을 화면에 출력하는 함수
+    
+    # Args:
+    #     log_list (list): 출력할 로그 리스트
+    #     title (str): 출력 제목
+    
     print(f'\n=== {title} ===')
     for i, entry in enumerate(log_list):
         print(f'{i+1}. {entry["timestamp"]} | {entry["event"]} | {entry["message"]}')
@@ -89,15 +89,15 @@ def display_list(log_list, title):
 
 
 def sort_logs_reverse_chronological(log_list):
-    """
-    로그 리스트를 시간 역순으로 정렬하는 함수
     
-    Args:
-        log_list (list): 정렬할 로그 리스트
+    # 로그 리스트를 시간 역순으로 정렬하는 함수
+    
+    # Args:
+    #     log_list (list): 정렬할 로그 리스트
         
-    Returns:
-        list: 시간 역순으로 정렬된 로그 리스트
-    """
+    # Returns:
+    #     list: 시간 역순으로 정렬된 로그 리스트
+    
     try:
         sorted_logs = sorted(log_list, 
                            key=lambda x: datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S'), 
@@ -112,15 +112,15 @@ def sort_logs_reverse_chronological(log_list):
 # 리스트를 딕셔너리(dict)로 변환하는 기능을 합니다.
 
 def convert_list_to_dict(log_list):
-    """
-    리스트를 사전(Dict) 객체로 변환하는 함수
     
-    Args:
-        log_list (list): 변환할 로그 리스트
+    # 리스트를 사전(Dict) 객체로 변환하는 함수
+    
+    # Args:
+    #     log_list (list): 변환할 로그 리스트
         
-    Returns:
-        dict: 변환된 사전 객체
-    """
+    # Returns:
+    #     dict: 변환된 사전 객체
+    
     log_dict = {}
     
     for i, entry in enumerate(log_list):
@@ -139,16 +139,16 @@ def convert_list_to_dict(log_list):
 # 파이썬의 dict 자료형을 JSON 파일로 저장하는 기능을 합니다.
 
 def save_dict_to_json(log_dict, filename):
-    """
-    사전 객체를 JSON 파일로 저장하는 함수
     
-    Args:
-        log_dict (dict): 저장할 사전 객체
-        filename (str): 저장할 파일명
+    # 사전 객체를 JSON 파일로 저장하는 함수
+    
+    # Args:
+    #     log_dict (dict): 저장할 사전 객체
+    #     filename (str): 저장할 파일명
         
-    Returns:
-        bool: 저장 성공 여부
-    """
+    # Returns:
+    #     bool: 저장 성공 여부
+    
     try:
         with open(filename, 'w', encoding='utf-8') as file:
             json.dump(log_dict, file, ensure_ascii=False, indent=2)
@@ -162,15 +162,15 @@ def save_dict_to_json(log_dict, filename):
 # 로그 데이터 중 위험 키워드를 포함한 항목만 골라내는 역할을 합니다.
 
 def filter_danger_keywords(log_list):
-    """
-    위험 키워드가 포함된 로그만 필터링하는 함수 (보너스 기능)
     
-    Args:
-        log_list (list): 필터링할 로그 리스트
+    # 위험 키워드가 포함된 로그만 필터링하는 함수 (보너스 기능)
+    
+    # Args:
+    #     log_list (list): 필터링할 로그 리스트
         
-    Returns:
-        list: 위험 키워드가 포함된 로그 리스트
-    """
+    # Returns:
+    #     list: 위험 키워드가 포함된 로그 리스트
+    
     danger_keywords = ['폭발', '누출', '고온', 'Oxygen', 'explosion', 'unstable']
     filtered_logs = []
     
@@ -184,13 +184,13 @@ def filter_danger_keywords(log_list):
 
 
 def save_danger_logs(danger_logs, filename):
-    """
-    위험 로그를 파일로 저장하는 함수
     
-    Args:
-        danger_logs (list): 저장할 위험 로그 리스트
-        filename (str): 저장할 파일명
-    """
+    # 위험 로그를 파일로 저장하는 함수
+    
+    # Args:
+    #     danger_logs (list): 저장할 위험 로그 리스트
+    #     filename (str): 저장할 파일명
+    
     try:
         with open(filename, 'w', encoding='utf-8') as file:
             file.write('timestamp,event,message\n')
@@ -202,12 +202,12 @@ def save_danger_logs(danger_logs, filename):
 
 
 def search_logs_by_keyword(json_filename):
-    """
-    JSON 파일에서 특정 키워드를 포함한 로그를 검색하는 함수 (보너스 기능)
     
-    Args:
-        json_filename (str): 검색할 JSON 파일명
-    """
+    # JSON 파일에서 특정 키워드를 포함한 로그를 검색하는 함수 (보너스 기능)
+    
+    # Args:
+    #     json_filename (str): 검색할 JSON 파일명
+    
     try:
         with open(json_filename, 'r', encoding='utf-8') as file:
             log_dict = json.load(file)
