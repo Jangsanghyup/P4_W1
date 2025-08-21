@@ -1,5 +1,5 @@
  main.py 코드 예시
- 
+
 import os
 import json
 from datetime import datetime
@@ -740,7 +740,6 @@ JSON 저장: UTF-8 인코딩으로 mission_computer_main.json 파일 저장
 JSON 파일 기반 로그 검색 기능
 
 
-
 2. log_analysis.md - 사고 분석 보고서
 
 로그를 상세 분석하여 사고 원인 추론
@@ -760,7 +759,6 @@ Python 내장 라이브러리만 사용: json, datetime, os 등만 사용
 
 실행 방법
 
-세 파일을 모두 같은 디렉토리에 저장
 python main.py 실행
 프로그램이 자동으로 로그 분석 및 JSON 파일 생성
 대화형 검색 기능 사용 가능
