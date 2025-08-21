@@ -189,6 +189,80 @@ def convert_list_to_dict(log_list):
     
     return log_dict
 
+# def convert_list_to_dict(log_list):
+# log_list를 받아서 딕셔너리 형태로 변환하는 함수 정의
+
+# log_dict = {}
+# 결과를 저장할 빈 딕셔너리를 생성합니다.
+# 이 안에 각 로그 항목을 log_001, log_002, ... 같은 키로 저장하게 됩니다.
+
+# for i, entry in enumerate(log_list):
+# log_list의 각 항목을 반복하면서 동시에 인덱스 i도 함께 가져옵니다.
+# enumerate()는 (index, item) 형태로 반환합니다.
+
+# key = f'log_{i+1:03d}'
+# 로그 항목을 저장할 때 사용할 문자열 키 생성
+# f'log_{i+1:03d}'는 포맷 문자열
+# i = 0 → log_001
+# i = 9 → log_010
+# i = 99 → log_100
+# :03d는 정수를 3자리로 0을 채워 출력하는 포맷입니다.
+
+# log_dict[key] = {
+#             'timestamp': entry['timestamp'],
+#             'event': entry['event'],
+#             'message': entry['message']
+#         }
+
+# 각 로그 항목(entry)의 내용을 timestamp, event, message 키를 가진 서브 딕셔너리로 구성해서 log_dict에 저장합니다.
+# 위에서 만든 key(log_001, log_002 등)를 기준으로 저장됩니다.
+
+
+#         log_dict[key] = {
+#             'timestamp': entry['timestamp'],
+#             'event': entry['event'],
+#             'message': entry['message']
+#         }
+# 각 로그 항목(entry)의 내용을 timestamp, event, message 키를 가진 서브 딕셔너리로 구성해서 log_dict에 저장합니다.
+
+# 위에서 만든 key(log_001, log_002 등)를 기준으로 저장됩니다.
+
+#     return log_dict
+# 최종적으로 생성된 딕셔너리(log_dict)를 반환합니다.
+
+# {
+#     'log_001': {
+#         'timestamp': '2025-08-21 09:00:00',
+#         'event': 'LOGIN',
+#         'message': 'User admin logged in'
+#     },
+#     'log_002': {
+#         'timestamp': '2025-08-21 09:05:00',
+#         'event': 'LOGOUT',
+#         'message': 'User admin logged out'
+#     }
+# }
+
+# key = f'log_{i+1:03d}'
+# f는 f-string (formatted string literal)의 약자로, 문자열 안에서 변수나 표현식을 직접 넣고, 서식을 지정할 수 있게 해주는 기능입니다. 
+# f: 포맷 문자열 (formatted string)
+# {}: 중괄호 안에 있는 표현식이 실행된 값으로 치환
+# i+1: 현재 인덱스에 1을 더한 값
+# :03d: 서식 지정 — 정수를 3자리 숫자로 표시하고, 빈 자리는 0으로 채움
+
+# i 값	i+1	f'log_{i+1:03d}' 결과
+# 0	1	'log_001'
+# 9	10	'log_010'
+# 99	100	'log_100'
+# 포맷 서식 정리: :03d
+# 0	빈 자리를 0으로 채움
+# 3	전체 자리수를 3자리로 맞춤
+# d	정수(decimal) 형식으로 표시
+
+# f : 문자열 안에서 변수를 삽입하고 포맷할 수 있음
+# :03d는 숫자를 3자리로 0을 채워 출력하는 형식
+# 결과적으로, log_001, log_002, ..., log_100 같은 일관된 키 이름 생성에 유용합니다
+
 # enumerate()는 리스트, 튜플, 문자열 같은 반복 가능한 객체를 입력받아,
 # 각 요소에 대해 **인덱스와 값 쌍(tuple)**을 포함하는 열거형 객체를 반환합니다.
 # save_dict_to_json() 함수는 사용자 정의 함수로,
