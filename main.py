@@ -227,7 +227,7 @@ def convert_list_to_dict(log_list):
 
 # 위에서 만든 key(log_001, log_002 등)를 기준으로 저장됩니다.
 
-#     return log_dict
+# return log_dict
 # 최종적으로 생성된 딕셔너리(log_dict)를 반환합니다.
 
 # {
