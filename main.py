@@ -268,16 +268,19 @@ def convert_list_to_dict(log_list):
 # save_dict_to_json() 함수는 사용자 정의 함수로,
 # 파이썬의 dict 자료형을 JSON 파일로 저장하는 기능을 합니다.
 
-def save_dict_to_json(log_dict, filename):
+
+
+
+# 사전 객체를 JSON 파일로 저장하는 함수
     
-    # 사전 객체를 JSON 파일로 저장하는 함수
-    
-    # Args:
-    #     log_dict (dict): 저장할 사전 객체
-    #     filename (str): 저장할 파일명
+# Args:
+#     log_dict (dict): 저장할 사전 객체
+#     filename (str): 저장할 파일명
         
-    # Returns:
-    #     bool: 저장 성공 여부
+# Returns:
+#     bool: 저장 성공 여부
+
+def save_dict_to_json(log_dict, filename):
     
     try:
         with open(filename, 'w', encoding='utf-8') as file:
@@ -291,16 +294,17 @@ def save_dict_to_json(log_dict, filename):
 # filter_danger_keywords() 함수는 "위험한 메시지"만 걸러내는 필터링 함수로,
 # 로그 데이터 중 위험 키워드를 포함한 항목만 골라내는 역할을 합니다.
 
+
+# 위험
+# Args:
+#     log_list (list): 필터링할 로그 리스트
+        
+# Returns:
+#     list: 위험 키워드가 포함된 로그 리스트
+    
 def filter_danger_keywords(log_list):
     
-    # 위험 키워드가 포함된 로그만 필터링하는 함수 (보너스 기능)
-    
-    # Args:
-    #     log_list (list): 필터링할 로그 리스트
-        
-    # Returns:
-    #     list: 위험 키워드가 포함된 로그 리스트
-    
+
     danger_keywords = ['폭발', '누출', '고온', 'Oxygen', 'explosion', 'unstable']
     filtered_logs = []
     
@@ -312,15 +316,13 @@ def filter_danger_keywords(log_list):
     return filtered_logs
 
 
-
-def save_danger_logs(danger_logs, filename):
-    
     # 위험 로그를 파일로 저장하는 함수
-    
-    # Args:
     #     danger_logs (list): 저장할 위험 로그 리스트
     #     filename (str): 저장할 파일명
     
+def save_danger_logs(danger_logs, filename):
+    
+
     try:
         with open(filename, 'w', encoding='utf-8') as file:
             file.write('timestamp,event,message\n')
@@ -330,13 +332,15 @@ def save_danger_logs(danger_logs, filename):
     except Exception as e:
         print(f'위험 로그 파일 저장 오류: {e}')
 
+# write(): 해당 파일에 문자열을 기록(write)함
+# entry는 반복문에서 사용하는 변수 이름입니다.
+# danger_logs라는 리스트(또는 다른 반복 가능한 객체)를 반복하면서, 
+# 그 안에 있는 각 항목을 entry라는 이름으로 하나씩 꺼내서 처리하겠다는 뜻입니다.
 
+# JSON 파일에서 특정 키워드를 포함한 로그를 검색하는 함수
+# json_filename (str): 검색할 JSON 파일명
+    
 def search_logs_by_keyword(json_filename):
-    
-    # JSON 파일에서 특정 키워드를 포함한 로그를 검색하는 함수 (보너스 기능)
-    
-    # Args:
-    #     json_filename (str): 검색할 JSON 파일명
     
     try:
         with open(json_filename, 'r', encoding='utf-8') as file:
@@ -366,6 +370,96 @@ def search_logs_by_keyword(json_filename):
         print(f'오류: {json_filename} 파일이 올바른 JSON 형식이 아닙니다.')
     except Exception as e:
         print(f'검색 중 오류가 발생했습니다: {e}')
+
+# 함수 정의
+# def search_logs_by_keyword(json_filename):
+# 함수 정의: JSON 형식의 로그 파일에서 키워드를 검색하는 기능 수행.
+
+# json_filename: 검색할 로그 파일 이름 (문자열)
+# 예외 처리 블록 시작
+#     try:
+
+
+# JSON 파일 열기 및 로딩
+#         with open(json_filename, 'r', encoding='utf-8') as file:
+#             log_dict = json.load(file)
+# json_filename 파일을 UTF-8 인코딩으로 **읽기 모드(r)**로 엽니다.
+# json.load(file)로 파일 내용을 딕셔너리 형식으로 파싱하여 log_dict에 저장.
+# 이 파일은 convert_list_to_dict() 함수로 생성된 구조라고 가정합니다.
+
+
+# keyword = input('\n검색할 키워드를 입력하세요: ').strip()
+# 사용자로부터 키워드를 입력받고, 앞뒤 공백 제거 (strip()).
+
+#   if not keyword:
+#             print('키워드가 입력되지 않았습니다.')
+#             return
+# 입력이 공백이거나 아무것도 없을 경우 경고를 출력하고 함수 종료.
+
+
+#  print(f'\n=== "{keyword}" 키워드 검색 결과 ===')
+#         found_count = 0
+# 검색 결과 시작을 알리는 메시지 출력.
+# 검색된 로그 수를 셀 변수 found_count 초기화.
+
+
+#  for log_id, log_entry in log_dict.items():
+# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복.
+
+
+# 검색 결과 시작을 알리는 메시지 출력.
+
+# 검색된 로그 수를 셀 변수 found_count 초기화.
+
+# 로그 항목 하나씩 순회하며 검색
+#         for log_id, log_entry in log_dict.items():
+
+# 딕셔너리인 log_dict에서 log_id (예: log_001)와 log_entry (딕셔너리 형태) 하나씩 반복.
+
+#             if keyword.lower() in log_entry['message'].lower():
+
+
+# 로그 메시지에 키워드가 포함되어 있는지 대소문자 무시하고 검사.
+# lower()는 대소문자 구분 없이 검색할 수 있게 해줌.
+
+#                 print(f'{log_id}: {log_entry["timestamp"]} | {log_entry["event"]} | {log_entry["message"]}')
+#                 found_count += 1
+
+
+# 키워드를 포함한 로그를 출력 (로그 ID, 시간, 이벤트, 메시지).
+# 일치하는 항목 수 증가.
+# 검색 결과 없을 때 / 있을 때 처리
+#         if found_count == 0:
+#             print('해당 키워드를 포함한 로그가 없습니다.')
+
+
+# 검색된 로그가 하나도 없으면 안내 메시지 출력.
+
+#         else:
+#             print(f'총 {found_count}개의 로그를 찾았습니다.')
+
+
+# 일치하는 로그 수를 출력.
+# 파일 없음 예외 처리
+#     except FileNotFoundError:
+#         print(f'오류: {json_filename} 파일을 찾을 수 없습니다.')
+
+
+# 입력된 파일이 존재하지 않으면 에러 메시지 출력.
+# JSON 형식 오류 처리
+#     except json.JSONDecodeError:
+#         print(f'오류: {json_filename} 파일이 올바른 JSON 형식이 아닙니다.')
+
+
+# JSON 파싱 중 에러가 발생한 경우 (예: 잘못된 형식의 파일일 경우)
+# 기타 예외 처리
+#     except Exception as e:
+#         print(f'검색 중 오류가 발생했습니다: {e}')
+
+# 예기치 않은 다른 모든 오류를 잡아서 메시지로 출력.
+
+# lower()는 파이썬 문자열(string) 메서드로, 문자열 안에 있는 모든 대문자를 소문자로 변환하는 기능을 합니다.
+# strip()은 파이썬 문자열(string) 메서드로, 문자열의 앞뒤에 있는 공백 문자(또는 지정한 문자들)를 제거하는 데 사용됩니다.
 
 
 def main():
