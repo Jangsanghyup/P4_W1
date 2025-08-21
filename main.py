@@ -130,7 +130,6 @@ def parse_log_to_list(content):
 # ]
 
 
-
 def display_list(log_list, title):
     
     # 리스트 내용을 화면에 출력하는 함수
