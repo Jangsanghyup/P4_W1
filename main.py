@@ -362,7 +362,7 @@ def search_logs_by_keyword(json_filename):
 
 # 함수 정의
 # def search_logs_by_keyword(json_filename):
-# 함수 정의: JSON 형식의 로그 파일에서 키워드를 검색하는 기능 수행.
+# 함수 정의: JSON 형식의 로그 파일에서 키워드를 검색
 
 # json_filename: 검색할 로그 파일 이름 (문자열)
 # 예외 처리 블록 시작
