@@ -4,16 +4,15 @@ from datetime import datetime
 
 # datetime Python 표준 라이브러리(Standard Library)에 포함된 모듈(module)입니다.
 # datetime 안에는 datetime, date, time, timedelta 클래스가 포함되었습니다.
-
-def read_log_file(filename):
-    
-    # 로그 파일을 읽어서 전체 내용을 반환하는 함수
+  # 로그 파일을 읽어서 전체 내용을 반환하는 함수
     
     # Args:
     #     filename (str): 읽을 로그 파일명
         
     # Returns:
     #     str: 파일 내용 또는 None (오류 시)
+    
+def read_log_file(filename):
     
     try:
         with open(filename, 'r', encoding='utf-8') as file:
@@ -37,17 +36,14 @@ def read_log_file(filename):
 # FileNotFoundError는 파이썬에서 파일 또는 디렉토리를 찾을 수 없을 때 발생하는 에러(예외 클래스)입니다.
 # UnicodeDecodeError는 파이썬에서 텍스트(문자열)를 디코딩할 때 문제가 생기면 발생하는 에러입니다.
 
-
+# 로그 내용을 파싱하여 리스트로 변환하는 함수
+# Args:
+# content (str): 로그 파일 내용
+# Returns:
+# list: 파싱된 로그 데이터 리스트
+   
 def parse_log_to_list(content):
     
-    # 로그 내용을 파싱하여 리스트로 변환하는 함수
-    
-    # Args:
-    #     content (str): 로그 파일 내용
-        
-    # Returns:
-    #     list: 파싱된 로그 데이터 리스트
-   
     log_list = []
     
     if not content:
@@ -55,10 +51,9 @@ def parse_log_to_list(content):
     
     lines = content.strip().split('\n')
     
-    # 헤더 라인 건너뛰기
     for line in lines[1:]:
         if line.strip():
-            parts = line.split(',', 2)  # 최대 3개로 분할
+            parts = line.split(',', 2)  
             if len(parts) >= 3:
                 timestamp = parts[0].strip()
                 event = parts[1].strip()
@@ -130,30 +125,25 @@ def parse_log_to_list(content):
 # ]
 
 
+# 리스트 내용을 화면에 출력하는 함수
+# Args:
+#     log_list (list): 출력할 로그 리스트
+#     title (str): 출력 제목
+    
 def display_list(log_list, title):
-    
-    # 리스트 내용을 화면에 출력하는 함수
-    
-    # Args:
-    #     log_list (list): 출력할 로그 리스트
-    #     title (str): 출력 제목
     
     print(f'\n=== {title} ===')
     for i, entry in enumerate(log_list):
         print(f'{i+1}. {entry["timestamp"]} | {entry["event"]} | {entry["message"]}')
     print('=' * 50)
 
+# 로그 리스트를 시간 역순으로 정렬하는 함수
+# Args:
+#     log_list (list): 정렬할 로그 리스트        
+# Returns:
+#     list: 시간 역순으로 정렬된 로그 리스트
 
 def sort_logs_reverse_chronological(log_list):
-    
-    # 로그 리스트를 시간 역순으로 정렬하는 함수
-    
-    # Args:
-    #     log_list (list): 정렬할 로그 리스트
-        
-    # Returns:
-    #     list: 시간 역순으로 정렬된 로그 리스트
-    
     try:
         sorted_logs = sorted(log_list, 
                            key=lambda x: datetime.strptime(x['timestamp'], '%Y-%m-%d %H:%M:%S'), 
@@ -167,16 +157,15 @@ def sort_logs_reverse_chronological(log_list):
 # convert_list_to_dict 사용자 정의 함수이며,
 # 리스트를 딕셔너리(dict)로 변환하는 기능을 합니다.
 
+
+# 리스트를 사전(Dict) 객체로 변환하는 함수 
+# Args:
+#     log_list (list): 변환할 로그 리스트        
+# Returns:
+#     dict: 변환된 사전 객체
+
 def convert_list_to_dict(log_list):
-    
-    # 리스트를 사전(Dict) 객체로 변환하는 함수
-    
-    # Args:
-    #     log_list (list): 변환할 로그 리스트
-        
-    # Returns:
-    #     dict: 변환된 사전 객체
-    
+
     log_dict = {}
     
     for i, entry in enumerate(log_list):
